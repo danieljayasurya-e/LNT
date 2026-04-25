@@ -418,8 +418,6 @@ export default function Contact() {
 
               <div className="contact-info-list">
                 <div className="contact-info-item">
-                </div>
-                <div className="contact-info-item">
                   <div className="contact-info-icon"><MailIcon /></div>
                   <div>
                     <div className="contact-info-label">Email</div>
