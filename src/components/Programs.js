@@ -333,7 +333,10 @@ export default function Programs() {
 
           <div className="internship-banner">
             <div>
-              <div className="internship-title">🚀 Internship Opportunity</div>
+              <div className="internship-title" style={{display:'flex',alignItems:'center',gap:'10px'}}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                Internship Opportunity
+              </div>
               <div className="internship-sub">Selected students will be offered internship placements with real project exposure in the IT industry.</div>
             </div>
             <button className="internship-btn" onClick={scrollToContact}>

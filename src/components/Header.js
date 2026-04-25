@@ -214,7 +214,7 @@ export default function Header() {
                 <circle cx="19" cy="12" r="2" fill="#fff"/>
               </svg>
             </div>
-            <div className="logo-text">L<span className="logo-accent">n</span>T</div>
+            <div className="logo-text">L<span className="logo-accent">n</span>D</div>
           </div>
 
           <nav className="nav">

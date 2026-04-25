@@ -458,23 +458,8 @@ export default function Hero() {
         <div className="hero-grid" />
 
         <div className="hero-content">
-          {/* ---- LEFT ---- */}
           <div className="hero-left">
-            {/* Always-visible company branding */}
-            <div className="hero-company">
-              <div className="hero-company-logo">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 7l4 4-4 4M11 15h6" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
-                  <circle cx="19" cy="12" r="2" fill="#fff"/>
-                </svg>
-              </div>
-              <span className="hero-company-name">L<span>n</span>T</span>
-              <div className="hero-company-divider" />
-              <span className="hero-company-tagline">Learn from Professionals</span>
-            </div>
-
             <div className="hero-badge">8 Industry Courses</div>
-
             <h1 className={`hero-course-name${animating ? ' fade' : ''}`}>
               Learn <span className="accent">{slide.course}</span>
             </h1>
