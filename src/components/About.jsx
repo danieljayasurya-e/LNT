@@ -212,7 +212,7 @@ export default function About() {
                 Where Industry Meets <span className="accent">Learning</span>
               </h2>
               <p className="about-desc">
-                We are a team of passionate IT professionals committed to bridging the skills gap in today's rapidly evolving tech industry. Our sessions are conducted in Tamil, making technical concepts easier to understand and apply.
+                We are a team of passionate IT professionals committed to bridging the skills gap in today's rapidly evolving tech industry. Our sessions are conducted in Tamil & English, making technical concepts easier to understand and apply.
               </p>
               <p className="about-desc" style={{ marginTop: '-8px' }}>
                 What sets LnD apart is our team of highly skilled trainers who are <strong style={{ color: 'var(--color-primary-dark)' }}>active IT industry professionals</strong> — bringing real-world challenges directly into the classroom and ensuring learners stay aligned with current technologies, tools, and best practices.

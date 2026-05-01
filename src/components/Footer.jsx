@@ -75,22 +75,13 @@ export default function Footer() {
           gap: 12px;
           margin-bottom: 20px;
         }
-        .footer-logo-icon {
-          width: 42px; height: 42px;
-          background: var(--color-primary);
-          border-radius: 10px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .footer-logo-img {
+          height: 24px;
+          width: auto;
+          display: block;
+          /* tint to aqua on the dark footer — SVG already uses #00bcd4 so it shows well */
+          filter: brightness(1.15);
         }
-        .footer-logo-name {
-          font-family: var(--font-display);
-          font-size: 22px;
-          font-weight: 800;
-          color: white;
-          letter-spacing: -0.5px;
-        }
-        .footer-logo-name span { color: var(--color-accent); }
         .footer-tagline {
           font-style: italic;
           font-size: 13px;
@@ -211,17 +202,11 @@ export default function Footer() {
           <div className="footer-grid">
             <div className="footer-brand">
               <div className="footer-logo">
-                <div className="footer-logo-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 7l4 4-4 4M11 15h6" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <circle cx="19" cy="12" r="2" fill="#fff"/>
-                  </svg>
-                </div>
-                <div className="footer-logo-name">L<span>n</span>D</div>
+                <img src="/logo.png" alt="LnD" className="footer-logo-img" />
               </div>
               <div>"Grow Without Limit"</div>
               <p className="footer-desc">
-                Bridging the IT skills gap through industry-aligned, Tamil-medium training by active IT professionals.
+                Bridging the IT skills gap through industry-aligned training by active IT professionals.
               </p>
             </div>
 
@@ -243,7 +228,7 @@ export default function Footer() {
                 </div>
                 <div className="footer-contact-item">
                   <div className="footer-contact-icon"><MapPinIcon /></div>
-                  <span>Coimbatore, Tamil Nadu, India</span>
+                  <span>Bangalore, Karnataka, India</span>
                 </div>
               </div>
               {/* <a

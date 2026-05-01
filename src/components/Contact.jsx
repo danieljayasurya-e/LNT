@@ -19,12 +19,12 @@ import React, { useState } from 'react';
 // ║     b) Create a READ token and paste below                       ║
 // ║     c) Without token: API still works at a lower rate limit      ║
 // ╚══════════════════════════════════════════════════════════════════╝
-const EMAILJS_SERVICE_ID    = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_CUSTOMER_TMPL = import.meta.env.VITE_EMAILJS_CUSTOMER_TMPL;
-const EMAILJS_ADMIN_TMPL    = import.meta.env.VITE_EMAILJS_ADMIN_TMPL;
-const EMAILJS_PUBLIC_KEY    = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-const HF_API_TOKEN          = import.meta.env.VITE_HF_API_TOKEN || '';
-const ADMIN_EMAIL           = 'ld.programinfo@gmail.com';
+const EMAILJS_ADMIN_TMPL = import.meta.env.VITE_EMAILJS_ADMIN_TMPL;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const HF_API_TOKEN = import.meta.env.VITE_HF_API_TOKEN || '';
+const ADMIN_EMAIL = 'ld.programinfo@gmail.com';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const courses = ['Java', 'Python', 'C Programming', 'C++', 'AI & ML', 'App Development', 'MERN Stack', 'SQL'];
@@ -69,13 +69,12 @@ const getDefaultBody = (name, course) => `Dear ${name},
 
 Thank you for your interest in the ${course} course at LnD Training. We are thrilled to hear from you!
 
-Our expert team of active IT professionals will reach out to you within 24 hours to discuss batch timings, course fee details, and enrollment. All our sessions are conducted in Tamil, making every concept clear and practical.
+Our expert team of active IT professionals will reach out to you within 24 hours to discuss batch timings, course fee details, and enrollment.
 
-We look forward to being part of your success story.
+We look forward to being part of your success story. 
 
 Warm regards,
 LnD Training Team
-Coimbatore, Tamil Nadu
 ld.programinfo@gmail.com`;
 
 // ── EmailJS REST API ──────────────────────────────────────────────────────────
@@ -84,9 +83,9 @@ async function sendViaEmailJS(templateId, params) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      service_id:      EMAILJS_SERVICE_ID,
-      template_id:     templateId,
-      user_id:         EMAILJS_PUBLIC_KEY,
+      service_id: EMAILJS_SERVICE_ID,
+      template_id: templateId,
+      user_id: EMAILJS_PUBLIC_KEY,
       template_params: params,
     }),
   });
@@ -110,12 +109,27 @@ export default function Contact() {
 
   const validate = () => {
     const e = {};
-    if (!form.name.trim()) e.name = 'Name is required';
-    if (!form.phone.trim()) e.phone = 'Phone is required';
-    else if (!/^\d{10}$/.test(form.phone.replace(/\s/g, ''))) e.phone = 'Enter a valid 10-digit phone number';
-    if (!form.email.trim()) e.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'Enter a valid email';
+
+    if (!form.name.trim()) {
+      e.name = 'Name is required';
+    } else if (!/^[A-Za-z\s]+$/.test(form.name)) {
+      e.name = 'Name should contain only letters';
+    }
+
+    if (!form.phone.trim()) {
+      e.phone = 'Phone number is required';
+    } else if (!/^[6-9]\d{9}$/.test(form.phone.replace(/\s/g, ''))) {
+      e.phone = 'Enter a valid 10-digit number starting with 6, 7, 8, or 9';
+    }
+
+    if (!form.email.trim()) {
+      e.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email)) {
+      e.email = 'Enter a valid email address';
+    }
+
     if (!form.course) e.course = 'Please select a course';
+
     return e;
   };
 
@@ -144,21 +158,21 @@ export default function Contact() {
         // Step 1 — Send confirmation to student
         setSendStep('Sending confirmation to your email…');
         await sendViaEmailJS(EMAILJS_CUSTOMER_TMPL, {
-          to_name:     form.name,
-          to_email:    form.email,
+          to_name: form.name,
+          to_email: form.email,
           course_name: form.course,
-          email_body:  getDefaultBody(form.name, form.course),
+          email_body: getDefaultBody(form.name, form.course),
         });
 
         // Step 2 — Notify admin
         setSendStep('Notifying our team…');
         await sendViaEmailJS(EMAILJS_ADMIN_TMPL, {
-          from_name:       form.name,
-          from_email:      form.email,
-          from_phone:      form.phone,
-          course_name:     form.course,
+          from_name: form.name,
+          from_email: form.email,
+          from_phone: form.phone,
+          course_name: form.course,
           inquiry_message: form.message || '—',
-          admin_email:     ADMIN_EMAIL,
+          admin_email: ADMIN_EMAIL,
         });
       }
       setSubmitted(true);
@@ -378,7 +392,7 @@ export default function Contact() {
 
       <section className="contact" id="contact">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '64px', position: 'relative', zIndex: 1 }}>
             <span className="section-tag">Get In Touch</span>
             <h2 className="section-title">Start Your <span className="accent">Learning Journey</span></h2>
           </div>
@@ -402,7 +416,7 @@ export default function Contact() {
                   <div className="contact-info-icon"><MapPinIcon /></div>
                   <div>
                     <div className="contact-info-label">Location</div>
-                    <div className="contact-info-val">Coimbatore, Tamil Nadu</div>
+                    <div className="contact-info-val">Bangalore, Karnataka, India</div>
                   </div>
                 </div>
               </div>
@@ -447,9 +461,11 @@ export default function Contact() {
                         <label className="form-label">Phone Number *</label>
                         <input
                           className={`form-input${errors.phone ? ' error' : ''}`}
-                          placeholder="10-digit number"
+                          placeholder="Starting with 6 or 9"
                           value={form.phone}
-                          onChange={e => handleChange('phone', e.target.value)}
+                          maxLength={10}
+                          inputMode="numeric"
+                          onChange={e => handleChange('phone', e.target.value.replace(/\D/g, ''))}
                         />
                         {errors.phone && <div className="form-error">{errors.phone}</div>}
                       </div>

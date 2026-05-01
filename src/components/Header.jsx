@@ -63,39 +63,12 @@ export default function Header() {
           gap: 12px;
           text-decoration: none;
         }
-        .logo-icon {
-          width: 44px; height: 44px;
-          background: var(--color-primary);
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          overflow: hidden;
+        .logo-img {
+          height: 24px;
+          width: auto;
           flex-shrink: 0;
+          display: block;
         }
-        .logo-icon::before {
-          content: '';
-          position: absolute;
-          top: -10px; right: -10px;
-          width: 30px; height: 30px;
-          background: var(--color-accent);
-          border-radius: 50%;
-          opacity: 0.4;
-        }
-        /* Default (over dark hero): white text */
-        .logo-text {
-          font-family: var(--font-display);
-          font-size: 22px;
-          font-weight: 800;
-          color: #ffffff;
-          letter-spacing: -0.5px;
-          transition: color 0.28s ease;
-        }
-        .logo-text .logo-accent { color: var(--color-accent); }
-        /* Scrolled: dark text */
-        .header.scrolled .logo-text { color: var(--color-dark); }
-        .header.scrolled .logo-text .logo-accent { color: var(--color-primary); }
 
         /* Tagline */
         .logo-tagline {
@@ -256,13 +229,7 @@ export default function Header() {
       <header className={`header${scrolled ? ' scrolled' : ''}`}>
         <div className="header-inner">
           <div className="logo">
-            <div className="logo-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M4 7l4 4-4 4M11 15h6" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="19" cy="12" r="2" fill="#fff"/>
-              </svg>
-            </div>
-            <div className="logo-text">L<span className="logo-accent">n</span>D</div>
+            <img src="/logo.png" alt="LnD" className="logo-img" />
             <div className="logo-tagline">
               <span className="logo-tagline-dot" />
               <span className="logo-tagline-text">Grow Without Limit</span>
