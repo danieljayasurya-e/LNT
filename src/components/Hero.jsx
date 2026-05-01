@@ -459,7 +459,7 @@ export default function Hero() {
 
         <div className="hero-content">
           <div className="hero-left">
-            <div className="hero-badge">8 Industry Courses</div>
+            <div className="hero-badge">Industry Courses</div>
             <h1 className={`hero-course-name${animating ? ' fade' : ''}`}>
               Learn <span className="accent">{slide.course}</span>
             </h1>

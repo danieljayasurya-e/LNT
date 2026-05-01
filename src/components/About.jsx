@@ -225,7 +225,7 @@ export default function About() {
                   Successfully trained at
                 </div>
                 <div className="college-names">
-                  <strong>Sona College of Technology, Paavai Engineering College, Kings College Of Engineering </strong> &amp; <strong>Dr. Sivanthi Aditanar College of Engineering</strong> — with outstanding feedback from students and faculty.
+                  <strong>Sona College of Technology, Paavai Engineering College, Kings College Of Engineering, Muthayammal Engineering College </strong> &amp; <strong>Dr. Sivanthi Aditanar College of Engineering</strong> — with outstanding feedback from students and faculty.
                 </div>
               </div>
             </div>
@@ -240,7 +240,7 @@ export default function About() {
                 />
                 <div className="about-photo-overlay">
                   <div className="about-photo-badge">
-                    <div className="about-photo-badge-num">500+</div>
+                    <div className="about-photo-badge-num">900+</div>
                     <div className="about-photo-badge-label">Students<br />Trained</div>
                   </div>
                 </div>

@@ -19,12 +19,12 @@ import React, { useState } from 'react';
 // ║     b) Create a READ token and paste below                       ║
 // ║     c) Without token: API still works at a lower rate limit      ║
 // ╚══════════════════════════════════════════════════════════════════╝
-const EMAILJS_SERVICE_ID       = 'YOUR_EMAILJS_SERVICE_ID';
-const EMAILJS_CUSTOMER_TMPL    = 'YOUR_CUSTOMER_TEMPLATE_ID';
-const EMAILJS_ADMIN_TMPL       = 'YOUR_ADMIN_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY       = 'YOUR_EMAILJS_PUBLIC_KEY';
-const HF_API_TOKEN             = '';          // Optional — leave empty for free-tier calls
-const ADMIN_EMAIL              = 'info@lndtraining.in';
+const EMAILJS_SERVICE_ID    = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_CUSTOMER_TMPL = import.meta.env.VITE_EMAILJS_CUSTOMER_TMPL;
+const EMAILJS_ADMIN_TMPL    = import.meta.env.VITE_EMAILJS_ADMIN_TMPL;
+const EMAILJS_PUBLIC_KEY    = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const HF_API_TOKEN          = import.meta.env.VITE_HF_API_TOKEN || '';
+const ADMIN_EMAIL           = 'ld.programinfo@gmail.com';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const courses = ['Java', 'Python', 'C Programming', 'C++', 'AI & ML', 'App Development', 'MERN Stack', 'SQL'];
@@ -78,44 +78,23 @@ LnD Training Team
 Coimbatore, Tamil Nadu
 ld.programinfo@gmail.com`;
 
-async function generateEmailWithAI(formData) {
-  const prompt = `Write a short, warm professional confirmation email body (3 paragraphs, no subject line) for ${formData.name} who has just enquired about the ${formData.course} course at LnD Training, an IT training institute in Coimbatore, Tamil Nadu, India that teaches in Tamil. Tell them the team will contact them within 24 hours. End with team sign-off. Be concise and encouraging.`;
-  try {
-    const headers = { 'Content-Type': 'application/json' };
-    if (HF_API_TOKEN) headers['Authorization'] = `Bearer ${HF_API_TOKEN}`;
-    const res = await fetch(
-      'https://api-inference.huggingface.co/models/Qwen/Qwen2.5-1.5B-Instruct',
-      {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          inputs: prompt,
-          parameters: { max_new_tokens: 280, temperature: 0.72, return_full_text: false },
-        }),
-      }
-    );
-    if (!res.ok) throw new Error('HF API error');
-    const data = await res.json();
-    const text = (data[0]?.generated_text || '').trim();
-    return text.length > 60 ? text : getDefaultBody(formData.name, formData.course);
-  } catch {
-    return getDefaultBody(formData.name, formData.course);
-  }
-}
-
-// ── EmailJS REST API — no npm package required ────────────────────────────────
+// ── EmailJS REST API ──────────────────────────────────────────────────────────
 async function sendViaEmailJS(templateId, params) {
   const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      service_id: EMAILJS_SERVICE_ID,
-      template_id: templateId,
-      user_id: EMAILJS_PUBLIC_KEY,
+      service_id:      EMAILJS_SERVICE_ID,
+      template_id:     templateId,
+      user_id:         EMAILJS_PUBLIC_KEY,
       template_params: params,
     }),
   });
-  if (!res.ok) throw new Error(`EmailJS error: ${res.status}`);
+  if (!res.ok) {
+    // Read the actual error message from EmailJS for easier debugging
+    const errText = await res.text().catch(() => res.status);
+    throw new Error(`EmailJS ${res.status}: ${errText}`);
+  }
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -162,20 +141,16 @@ export default function Contact() {
 
     try {
       if (isConfigured) {
-        // Step 1 — Generate personalized email body with HF Qwen
-        setSendStep('Personalising your message with AI…');
-        const emailBody = await generateEmailWithAI(form);
-
-        // Step 2 — Send confirmation to student
+        // Step 1 — Send confirmation to student
         setSendStep('Sending confirmation to your email…');
         await sendViaEmailJS(EMAILJS_CUSTOMER_TMPL, {
           to_name:     form.name,
           to_email:    form.email,
           course_name: form.course,
-          email_body:  emailBody,
+          email_body:  getDefaultBody(form.name, form.course),
         });
 
-        // Step 3 — Notify admin
+        // Step 2 — Notify admin
         setSendStep('Notifying our team…');
         await sendViaEmailJS(EMAILJS_ADMIN_TMPL, {
           from_name:       form.name,
@@ -186,11 +161,10 @@ export default function Contact() {
           admin_email:     ADMIN_EMAIL,
         });
       }
-      // Even when not configured, show success so UI works in dev
       setSubmitted(true);
     } catch (err) {
-      console.error('Submission error:', err);
-      setSendError('Could not send at the moment. Please WhatsApp or call us directly.');
+      console.error('EmailJS error:', err.message);
+      setSendError(`Could not send: ${err.message}`);
     } finally {
       setSending(false);
       setSendStep('');
@@ -421,7 +395,7 @@ export default function Contact() {
                   <div className="contact-info-icon"><MailIcon /></div>
                   <div>
                     <div className="contact-info-label">Email</div>
-                    <div className="contact-info-val">info@lndtraining.in</div>
+                    <div className="contact-info-val">ld.programinfo@gmail.com</div>
                   </div>
                 </div>
                 <div className="contact-info-item">

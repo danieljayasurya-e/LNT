@@ -5,7 +5,7 @@ const courses = [
     name: 'Java',
     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
     mode: 'Online & Offline',
-    desc: 'Build powerful backend systems with Java — OOP, collections, multithreading, and real-world enterprise projects.',
+    desc: 'Build powerful software systems with Java — OOP, collections, multithreading, and real-world enterprise projects.',
   },
   {
     name: 'Python',
@@ -78,6 +78,29 @@ const courses = [
       { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', label: 'PostgreSQL' },
     ],
   },
+  {
+    name: 'Frontend Development',
+    mode: 'Online & Offline',
+    desc: 'Build modern, responsive web interfaces — HTML, CSS, JavaScript, React / Angular. Master component architecture, state management, routing, and deploy polished UIs.',
+    stackLogos: [
+      { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', label: 'HTML' },
+      { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg', label: 'CSS' },
+      { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', label: 'React' },
+      { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg', label: 'Angular' },
+    ],
+  },
+
+  {
+    name: 'Backend Development',
+    mode: 'Online & Offline',
+    desc: 'Design and build scalable server-side systems — REST APIs, authentication, databases, and cloud deployment using Java (Spring Boot) / Python (Django/Flask) / Node.js.',
+    stackLogos: [
+      { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', label: 'Java' },
+      { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', label: 'Python' },
+      { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', label: 'Node.js' },
+    ],
+  },
+
 ];
 
 export default function Programs() {
@@ -667,19 +690,19 @@ export default function Programs() {
                   </div>
                   <div className="internship-stats">
                     <span className="internship-stat accent-stat">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
                       3 – 6 Months Duration
                     </span>
                     <span className="internship-stat">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
                       Online
                     </span>
                     <span className="internship-stat">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
                       Certificate Provided
                     </span>
                     <span className="internship-stat">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" /></svg>
                       Live Projects
                     </span>
                   </div>

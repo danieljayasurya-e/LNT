@@ -239,7 +239,7 @@ export default function Footer() {
               <div className="footer-contact-list">
                 <div className="footer-contact-item">
                   <div className="footer-contact-icon"><MailIcon /></div>
-                  <span>info@lndtraining.in</span>
+                  <span>ld.programinfo@gmail.com</span>
                 </div>
                 <div className="footer-contact-item">
                   <div className="footer-contact-icon"><MapPinIcon /></div>
